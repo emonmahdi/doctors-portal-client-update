@@ -7,7 +7,7 @@ const ContactUs = () => {
   return (
     <section
       style={{ background: `url(${bg})` }}
-      className="my-24 py-16 text-center"
+      className="py-16 text-center"
     >
       <div>
         <h4 className="text-xl text-primary">Contact Us</h4>
@@ -28,8 +28,8 @@ const ContactUs = () => {
             class="input w-full max-w-xs mb-4"
           />
         </div>
-        <div>
-          <textarea class="textarea w-full max-w-xs mb-4" placeholder="Your Message"></textarea>
+        <div className="">
+          <textarea style={{height: '150px', marginBottom: '20px'}} class="textarea w-full max-w-xs mb-4" placeholder="Your Message"></textarea>
         </div>
         <PrimaryButton>Submit</PrimaryButton>
       </form>
