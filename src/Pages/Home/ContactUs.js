@@ -18,18 +18,18 @@ const ContactUs = () => {
           <input
             type="email"
             placeholder="Email Address"
-            class="input w-full max-w-xs mb-4"
+            className="input lg:w-full max-w-xs mb-4"
           />
         </div>
         <div>
           <input
             type="text"
             placeholder="Subject"
-            class="input w-full max-w-xs mb-4"
+            className="input lg:w-full max-w-xs mb-4"
           />
         </div>
         <div className="">
-          <textarea style={{height: '150px', marginBottom: '20px'}} class="textarea w-full max-w-xs mb-4" placeholder="Your Message"></textarea>
+          <textarea  className="textarea lg:w-full max-w-xs mb-4" placeholder="Your Message"></textarea>
         </div>
         <PrimaryButton>Submit</PrimaryButton>
       </form>
