@@ -1,17 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   useSignInWithGoogle,
   useSignInWithEmailAndPassword,
+  useSendPasswordResetEmail
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
+  const emailRef = useRef('')
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(
+      auth
+    );
   const {
     register,
     formState: { errors },
@@ -22,12 +28,17 @@ const Login = () => {
   const location = useLocation();
 
   const from = location?.state?.from?.pathname || "/";
+  const [token] = useToken(user || gUser)
 
   useEffect(() => {
-    if (user || gUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-   }, [user, gUser, from, navigate])
+   }, [token, from, navigate])
+
+  /*  if(user || gUser){
+    navigate(from, { replace: true });
+   } */
 
   let signInError;
 
@@ -40,7 +51,22 @@ const Login = () => {
       <p className="text-red-500">{error?.message || gError?.message}</p>
     );
   }
+
+ /*  if(token){
+    navigate('/appointment')
+  } */
  
+  const resetEmail = async (e) => {
+    const email = emailRef.current.value;
+    console.log(email);
+    if(email){
+      await sendPasswordResetEmail(email);
+      console.log('send email');
+    }
+    else{
+      console.log('send reset password email');
+    }
+  }
 
   const onSubmit = (data) => { 
     signInWithEmailAndPassword(data.email, data.password);
@@ -60,6 +86,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
+                ref={emailRef}
                 placeholder="Your Email"
                 className="input input-bordered w-full max-w-xs"
                 {...register(
@@ -142,6 +169,11 @@ const Login = () => {
               <Link to="/signup" className="text-primary">
                 Create new account
               </Link>
+            </small>
+          </p>
+          <p onClick={resetEmail} className='text-secondary cursor-pointer'>
+            <small>
+              Forgot Password 
             </small>
           </p>
           <div className="divider">OR</div>
