@@ -7,7 +7,7 @@ import DoctorRow from "./DoctorRow";
 const ManageDoctors = () => {
   const [deletingDoctor, setDeletingDoctor] = useState('');
   const { data: doctors, isLoading, refetch } = useQuery("doctors", () =>
-    fetch("https://doctors-portal-app.onrender.com/doctor", {
+    fetch("https://y-silk-zeta.vercel.app/doctor", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

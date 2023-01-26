@@ -12,7 +12,7 @@ const MyAppointment = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`https://doctors-portal-app.onrender.com/booking?patient=${user.email}`, {
+      fetch(`https://y-silk-zeta.vercel.app/booking?patient=${user.email}`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,

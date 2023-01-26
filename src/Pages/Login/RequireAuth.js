@@ -9,7 +9,7 @@ const RequireAuth = ({children}) => {
     const location = useLocation();
 
     if(loading){
-        return <Loading />
+        return <Loading /> 
     }
 
     if(!user){

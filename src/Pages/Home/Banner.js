@@ -4,9 +4,15 @@ import React from "react";
 import chairImg from '../../assets/images/chair.png'
 import PrimaryButton from "../Shared/PrimaryButton/PrimaryButton";
 
+
+const bannerStyle ={
+  background:'#3A4255',
+  color:'#fff'
+}
+
 const Banner = () => {
   return (
-    <div>
+    <div style={bannerStyle}>
       <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img

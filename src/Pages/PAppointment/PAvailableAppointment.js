@@ -8,7 +8,7 @@ const PAvailableAppointment = ({date}) => {
     const [treatment, setTreatment] = useState(null);
 
     useEffect(() => {
-        fetch('https://doctors-portal-app.onrender.com/service')
+        fetch('https://y-silk-zeta.vercel.app/service')
         .then(res => res.json())
         .then(data => setServices(data))
     }, [])

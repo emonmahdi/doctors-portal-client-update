@@ -5,7 +5,7 @@ import footer from "../../assets/images/footer.png";
 const Footer = () => {
   return (
     <footer
-      style={{ background: `url(${footer})`, backgroundSize: "cover" }}
+      style={{ background: `url(${footer})`, backgroundColor:'#000', color:'#fff', backgroundSize: "cover" }}
       className="text-dark-content"
     >
       <div className="footer p-10">
@@ -31,7 +31,7 @@ const Footer = () => {
       </div>
       </div>
       <div className="text-center">
-        <p>Copyright © 2022 - All right reserved by ACME Industries Ltd</p>
+        <p>Copyright © 2022 - All right reserved by Doctors Portal</p>
       </div>
     </footer>
   );

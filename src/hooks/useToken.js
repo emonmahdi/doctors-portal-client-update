@@ -8,7 +8,7 @@ const useToken = user => {
         const currentUser = {email: email};
         if(email){
 
-            fetch(`https://doctors-portal-app.onrender.com/user/${email}`, {
+            fetch(`https://y-silk-zeta.vercel.app/user/${email}`, {
                 method: "PUT",
                 headers: {
                     'content-type': 'application/json',

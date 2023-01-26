@@ -15,7 +15,7 @@ const CheckoutForm = ({appointment}) => {
     const {_id, price, patient, patientName} = appointment;
 
     useEffect(() => {
-        fetch(`https://doctors-portal-app.onrender.com/create-payment-intent`, {
+        fetch(`https://y-silk-zeta.vercel.app/create-payment-intent`, {
             method:"POST",
             headers: {
                 'content-type': 'application/json',
@@ -81,7 +81,7 @@ const CheckoutForm = ({appointment}) => {
                 transactionId: paymentIntent.id
             }
 
-            fetch(`https://doctors-portal-app.onrender.com/booking/${_id}`, {
+            fetch(`https://y-silk-zeta.vercel.app/booking/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

@@ -25,7 +25,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       phone: e.target.phone.value
     }
 
-    fetch('https://doctors-portal-app.onrender.com/booking',{
+    fetch('https://y-silk-zeta.vercel.app/booking',{
       method:"POST",
       headers:{
         'content-type': "application/json"
@@ -76,7 +76,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
                     slots.map((slot, index) => <option key={index} value={slot}>{slot}</option>)
                 } 
             </select>
-            <input
+            <input 
               type="text"
               disabled
               value={user.displayName || ""}

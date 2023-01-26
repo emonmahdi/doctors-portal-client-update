@@ -6,7 +6,7 @@ const useAdmin = user => {
     const [adminLoading, setAdminLoading] = useState(true)
     useEffect(() => {
         const email = user?.email;
-        fetch(`https://doctors-portal-app.onrender.com/admin/${email}`, {
+        fetch(`https://y-silk-zeta.vercel.app/admin/${email}`, {
             method: "GET",
             headers: {
                 'content-type': 'application/json',

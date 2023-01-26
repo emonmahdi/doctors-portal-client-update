@@ -13,7 +13,7 @@ const AddDoctor = () => {
   } = useForm();
 
   const { data: services, isLoading } = useQuery("service", () =>
-    fetch("https://doctors-portal-app.onrender.com/service").then((res) => res.json())
+    fetch("https://y-silk-zeta.vercel.app/service").then((res) => res.json())
   );
 
   if(isLoading){
@@ -39,10 +39,11 @@ const AddDoctor = () => {
                 name: data.name,
                 email: data.email,
                 specialty: data.specialty,
-                img: img
+                img: img,
+                description:data.description
               }
               // send to your database
-              fetch('https://doctors-portal-app.onrender.com/doctor', {
+              fetch('https://y-silk-zeta.vercel.app/doctor', {
                 method: 'POST',
                 headers:{
                   'content-type':'application/json',
@@ -67,8 +68,8 @@ const AddDoctor = () => {
   };
 
   return (
-    <div>
-      <h3 className="text-2xl text-purple-300">Add a New Doctor</h3>
+    <div className="border-2 border-teal-400 rounded-lg w-2/4 p-2 my-4">
+      <h3 className='my-4 font-bold text-xl px-4'>Add a New Doctor</h3>
 
       <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -134,8 +135,37 @@ const AddDoctor = () => {
               </span>
             )}
           </label>
+        </div> 
+
+         {/* ============== */}
+
+         <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text">Description</span>
+          </label>
+          <textarea
+            type="text"
+            placeholder="Your Description"
+            className="input input-bordered w-full max-w-xs h-28"
+            {...register("description", {
+              required: {
+                value: true,
+                message: "Description is Required",
+              },
+            })}
+          ></textarea> 
+          <label className="label">
+            <small>
+              {errors.description?.type === "required" && (
+                <span className="label-text-alt text-red-500">
+                  {errors.description?.message}
+                </span>
+              )}
+            </small>
+          </label>
         </div>
 
+         {/* ============== */}
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">Specialty</span>

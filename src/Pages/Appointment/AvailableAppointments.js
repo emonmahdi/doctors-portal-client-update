@@ -11,7 +11,7 @@ const AvailableAppointments = ({date}) => {
     const [treatment, setTreatment] = useState(null);
 
     const formattedDate = format(date, "PP")
-    const {data: services, isLoading, refetch} = useQuery(['available', formattedDate], () => fetch(`https://doctors-portal-app.onrender.com/available?data=${formattedDate}`)
+    const {data: services, isLoading, refetch} = useQuery(['available', formattedDate], () => fetch(`https://y-silk-zeta.vercel.app/available?data=${formattedDate}`)
     .then(res => res.json()) )
 
     if(isLoading){
@@ -19,7 +19,7 @@ const AvailableAppointments = ({date}) => {
     }
 
   /*   useEffect(() => {
-        fetch(`https://doctors-portal-app.onrender.com/available?data=${formattedDate}`)
+        fetch(`https://y-silk-zeta.vercel.app/available?data=${formattedDate}`)
         .then(res => res.json())
         .then(data => setServices(data))
     }, [formattedDate]) */
