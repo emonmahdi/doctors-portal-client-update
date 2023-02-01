@@ -8,6 +8,7 @@ import MakeAppointment from './MakeAppointment'
 import Services from './Services'
 import Testimonials from './Testimonials'
 import OurDoctors from './OurDoctors'
+import Faq from './Faq'
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <OurDoctors />
       <MakeAppointment />
       <Testimonials />
+      <Faq />
       <ContactUs />
       <Footer />
     </div>

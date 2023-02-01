@@ -31,6 +31,7 @@ const Dashboard = () => {
         <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
         <ul className="menu p-4 w-auto text-white">
           {/* <!-- Sidebar content here --> */}
+         { !admin &&  <>
           <li>
             <Link to='/dashboard/myappoinment'>My Appointment</Link>
           </li>
@@ -40,6 +41,7 @@ const Dashboard = () => {
           <li>
             <Link to='/dashboard/history'>My History</Link>
           </li>
+         </>}
           {admin &&<li>
             <>
             <Link to='/dashboard/users'>Users</Link>
