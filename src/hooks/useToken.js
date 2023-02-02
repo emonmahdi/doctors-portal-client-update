@@ -5,7 +5,11 @@ const useToken = user => {
     
     useEffect(() => {
         const email = user?.user?.email;
-        const currentUser = {email: email};
+        const displayName = user?.user?.displayName;
+        const role = user?.user?.role;
+        console.log(user?.user?.displayName);
+        console.log(user?.user?.role);
+        const currentUser = {email: email, displayName: displayName, role: role};
         if(email){
 
             fetch(`https://y-silk-zeta.vercel.app/user/${email}`, {
@@ -22,7 +26,7 @@ const useToken = user => {
                 localStorage.setItem('accessToken', accessToken)
                 setToken(accessToken)
             })
-        }
+        } 
 
     }, [user]);
 

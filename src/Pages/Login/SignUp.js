@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSignInWithGoogle, useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
@@ -18,6 +18,10 @@ const SignUp = () => {
       const navigate = useNavigate();
       const [token] = useToken(user || gUser);
 
+      const [role, setRole] = useState('patient');
+      const [name, setName] = useState('');
+      console.log(name);
+
     const {
       register,
       formState: { errors },
@@ -34,22 +38,25 @@ const SignUp = () => {
     }
   
     if(token){
-      navigate('/appointment') 
+      navigate('/appointment'); 
     }
-   
-  
+
+    const userUpdateData = {
+      displayName: name, 
+      role: role  
+  }
+  console.log(userUpdateData);
     const onSubmit = async (data) => {
       console.log(data)
-      await createUserWithEmailAndPassword(data.email, data.password);
-      await updateProfile({ displayName: data.name  });
-      // console.log("update done");
+      console.log(data.name)
+      console.log(data.role)
+      
+      await createUserWithEmailAndPassword(data?.email, data?.password);
+      await updateProfile(userUpdateData);
+      console.log("update done");
      
     };
-  
-   /*  if (token) { 
-      navigate('/appointment')
-    }
-   */
+   
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl">
@@ -64,12 +71,10 @@ const SignUp = () => {
               <input
                 type="text"
                 placeholder="Your Name"
-                className="input input-bordered w-full max-w-xs"
-                {...register("name", { required: {
-                  value: true,
-                  message: "Name is Required"
-                }}   
-                )}
+                name="name"
+                onChange={(e) => setName(e.target.value)}
+                className="input input-bordered w-full max-w-xs" 
+                required
               />
               <label className="label">
                 <small> 
@@ -130,6 +135,39 @@ const SignUp = () => {
             </div> 
  
             {signInError}
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Account Type</span> 
+              </label>
+              <div className="flex items-center justify-start">
+              <div className="flex items-center pr-8">
+              <input
+                type="radio"
+                id="patient"
+                name='role'
+                value="patient" 
+                placeholder="Your Password"
+                className="input mr-1" 
+                checked={role === 'patient'}
+                onChange={(e) => setRole(e.target.value)}
+              /> <label htmlFor="patient">Patient</label>
+              </div>
+              <div className="flex items-center">
+              <input
+                type="radio"
+                id="doctor"
+                name='role'
+                value="doctor"
+                placeholder="Your Password"
+                className="input mr-1"
+                checked={role === 'doctor'}
+                onChange={(e) => setRole(e.target.value)}
+              /> <label htmlFor="doctor">Doctor</label>
+              </div>
+              </div>
+              
+            </div>
+
             <input className="btn w-full max-w-xs" type="submit" value="Signup" />
           </form>
           <p><small>Already have an account? <Link to='/login' className="text-primary">Please Login</Link></small></p>

@@ -24,11 +24,32 @@ const UserRow = ({user, refetch, index, setDeleteUser}) => {
         })
     }
 
+    const makeDoctor = () => {
+      fetch(`http://localhost:5000/admin/doctor/${email}`, {
+        method: 'PUT', 
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      }).then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if(data.modifiedCount > 0){
+          refetch();
+          toast.success('Make Doctor Successfully!')
+        }
+      })
+    }
+
+
   return (
     <tr>
       <th>{index + 1}</th>
       <td>{email}</td>
-      <td>{role !== 'admin'? <button onClick={makeAdmin} className="btn btn-xs">Make Admin</button> : <span className="font-bold text-primary">Already Admin</span>}</td>
+      <td>{role !== 'admin'? <>
+      <button onClick={makeAdmin} className="btn btn-xs mx-2">Make Admin</button>
+      <span> { role !== 'doctor' ? <button onClick={makeDoctor} className="btn btn-xs">Make Doctor</button> : <span className="font-bold text-primary">Doctor</span> } </span>
+      </> 
+      : <span className="font-bold text-primary">Admin</span>}</td>
       <td>
         <label onClick={() => setDeleteUser(user) } htmlFor="user-delete-modal" className="btn btn-xs btn-error text-white">Remove User</label>
       </td>

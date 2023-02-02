@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
 import auth from "../../firebase.init";
 import useAdmin from "../../hooks/useAdmin";
+import useDoctor from "../../hooks/useDoctor";
 
 
 const sideBarStyle = {
@@ -18,6 +19,10 @@ const sideBarStyle = {
 const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
+  const [doctor] = useDoctor(user);
+
+  console.log(doctor);
+
   return (
     <div className="drawer drawer-mobile">
       <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
@@ -31,7 +36,7 @@ const Dashboard = () => {
         <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
         <ul className="menu p-4 w-auto text-white">
           {/* <!-- Sidebar content here --> */}
-         { !admin &&  <>
+         { !admin || !doctor &&  <>
           <li>
             <Link to='/dashboard/myappoinment'>My Appointment</Link>
           </li>
@@ -42,11 +47,16 @@ const Dashboard = () => {
             <Link to='/dashboard/history'>My History</Link>
           </li>
          </>}
-          {admin &&<li>
+          {admin && <li>
             <>
             <Link to='/dashboard/users'>Users</Link>
             <Link to='/dashboard/addDoctor'>Add a Doctor</Link>
             <Link to='/dashboard/manageDoctor'>ManageDoctor</Link>
+            </>
+          </li>}
+          {doctor && <li>
+            <>
+            <Link to='/dashboard/patients'>Patient List</Link> 
             </>
           </li>}
         </ul>
