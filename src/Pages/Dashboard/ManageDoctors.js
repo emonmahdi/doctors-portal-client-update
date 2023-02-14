@@ -6,6 +6,7 @@ import DoctorRow from "./DoctorRow";
 
 const ManageDoctors = () => {
   const [deletingDoctor, setDeletingDoctor] = useState('');
+  
   const { data: doctors, isLoading, refetch } = useQuery("doctors", () =>
     fetch("https://y-silk-zeta.vercel.app/doctor", {
       headers: {
@@ -19,9 +20,12 @@ const ManageDoctors = () => {
   }
 
   return (
-    <div>
-      <h2 className="text-2xl mb-3">Manage Doctor {doctors.length}</h2>
-      <div className="overflow-x-auto">
+    <div> 
+      <h2 className="text-3xl text-black-500 font-bold text-center">
+        Manage Doctor{" "}
+      </h2>
+      <h2 className="text-xl font-bold text-right mb-3">Total Doctor: {doctors.length}</h2>
+      <div className="overflow-x-auto mb-12">
         <table className="table table-zebra w-full">
           <thead>
             <tr>

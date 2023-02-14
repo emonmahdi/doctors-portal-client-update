@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
+import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
+import {Editor, EditorState} from 'draft-js';
+import 'draft-js/dist/Draft.css';
+import { format } from "date-fns";
 
-const AddDoctor = () => {
+
+const AddBlog = () => { 
+  const [user] = useAuthState(auth); 
+
   const {
     register,
     formState: { errors },
@@ -19,11 +27,16 @@ const AddDoctor = () => {
   if (isLoading) {
     return <Loading />;
   }
+ 
 
   const imageStorageKey = "86d7ede8a06ce13e801bf7d5c3eeaa9a";
 
-  const onSubmit = async (data) => {
-    console.log(data);
+  const todayDate = new Date();
+
+  const formattedDate = format( todayDate, 'PP')
+  console.log(formattedDate);
+
+  const onSubmit = async (data) => { 
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -36,29 +49,29 @@ const AddDoctor = () => {
       .then((result) => {
         if (result.success) {
           const img = result.data.url;
-          const doctor = {
-            name: data.name,
+          const blog = {
+            title: data.title,
             email: data.email,
-            specialty: data.specialty,
+            date: formattedDate,
             img: img,
             description: data.description,
           };
           // send to your database
-          fetch("https://y-silk-zeta.vercel.app/doctor", {
+          fetch("https://y-silk-zeta.vercel.app/blog", {
             method: "POST",
             headers: {
               "content-type": "application/json",
               authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
-            body: JSON.stringify(doctor),
+            body: JSON.stringify(blog),
           })
             .then((res) => res.json())
             .then((inserted) => {
               if (inserted.insertedId) {
-                toast.success("Doctor added successfully");
+                toast.success("Blog added successfully");
                 reset();
               } else {
-                toast.error("Failed doctor added a doctor");
+                toast.error("Failed Blog added");
               }
             });
         }
@@ -71,34 +84,34 @@ const AddDoctor = () => {
 
   return (
     <>
-      <h2 className="text-3xl text-black-500 font-bold text-center">
-        Add Doctor{" "}
-      </h2>
 
+      <h2 className="text-3xl text-black-500 font-bold text-center">
+        Add Blog{" "}
+      </h2> 
       <div className="border-2 border-teal-400 bg-white rounded-lg w-3/3 mx-auto p-2 my-4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex justify-around ">
             <div>
               <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text font-bold">Name</span>
+                  <span className="label-text font-bold">Title</span>
                 </label>
                 <input
                   type="text"
                   placeholder="Your Name"
                   className="input input-bordered w-screen max-w-xs"
-                  {...register("name", {
+                  {...register("title", {
                     required: {
                       value: true,
-                      message: "Name is Required",
+                      message: "Title is Required",
                     },
                   })}
                 />
                 <label className="label">
                   <small>
-                    {errors.name?.type === "required" && (
+                    {errors.title?.type === "required" && (
                       <span className="label-text-alt text-red-500">
-                        {errors.name?.message}
+                        {errors.title?.message}
                       </span>
                     )}
                   </small>
@@ -111,7 +124,8 @@ const AddDoctor = () => {
                 </label>
                 <input
                   type="email"
-                  placeholder="Your Email"
+                  placeholder="Your Email" 
+                  defaultValue={user?.email}
                   className="input input-bordered w-full max-w-xs"
                   {...register(
                     "email",
@@ -175,21 +189,22 @@ const AddDoctor = () => {
             </div>
             <div>
                {/* ============== */}
-               <div className="form-control w-full max-w-xs">
+              {/*  <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text font-bold">Specialty</span>
+                  <span className="label-text font-bold">Date</span>
                 </label>
-                <select
-                  {...register("specialty")}
-                  className="select input-bordered w-full max-w-xs border"
-                >
-                  {services.map((service) => (
-                    <option key={service._id} value={service.name}>
-                      {service.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
+                <input
+                  type="date"
+                  defaultValue={todayDate}
+                  className="input input-bordered w-full max-w-xs"
+                  {...register("date", {
+                    required: {
+                      value: true,
+                      message: "Date is Required",
+                    },
+                  })}
+                />
+              </div> */}
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text font-bold">Photo</span>
@@ -228,4 +243,4 @@ const AddDoctor = () => {
   );
 };
 
-export default AddDoctor;
+export default AddBlog;

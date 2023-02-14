@@ -6,7 +6,7 @@ const avatar = 'https://i.ibb.co/TYh3jwZ/download.png'
 
 const Review = ({ review }) => { 
   const {photo, name, description, address} = review;
-  console.log(photo);
+  // console.log(photo);
   const [user, loading, error] = useAuthState(auth);
 
   return (

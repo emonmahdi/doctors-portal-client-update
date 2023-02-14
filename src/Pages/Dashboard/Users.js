@@ -20,7 +20,8 @@ const Users = () => {
   }
   return (
     <div>
-      <h2 className="text-2xl">All Users {users.length}</h2>
+      <h2 className="text-3xl text-black-500 font-bold text-center">Users </h2> 
+      <h2 className="text-xl font-bold text-right">Total Users: {users.length}</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>

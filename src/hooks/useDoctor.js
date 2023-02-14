@@ -7,7 +7,7 @@ const useDoctor = user => {
     useEffect(() => {
         const email = user?.email;
         if(email){
-            fetch(`http://localhost:5000/doctor/${email}`, {
+            fetch(`https://y-silk-zeta.vercel.app/doctor/${email}`, {
             method: "GET",
             headers: {
                 'content-type': 'application/json',
@@ -15,8 +15,8 @@ const useDoctor = user => {
             }, 
             }).then(res => res.json())
             .then(data => {
-                console.log(data);
-                setDoctor(data.doctor);
+                // console.log(data);
+                setDoctor(data.doctor);   
                 setDoctorLoading(false)
             })
         }

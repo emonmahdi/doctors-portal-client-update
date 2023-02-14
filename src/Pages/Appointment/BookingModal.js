@@ -95,6 +95,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
               placeholder="Your Phone"
               name="phone"
               className="input input-bordered w-full max-w-xs mb-1"
+              required
             />
             <input
               type="submit"

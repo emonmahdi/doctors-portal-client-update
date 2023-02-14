@@ -1,0 +1,23 @@
+#blog-section{
+    padding: 20px 30px;
+    background-color: #E6F8F8;
+    padding-bottom: 50px;
+}
+.blog-sec-title{
+    margin-bottom: 50px;
+}
+.single-blog{
+    overflow: hidden;
+}
+.blog-img img{
+    margin-bottom: -40px;
+}
+.blog-desc{
+    border-radius: 10px;
+}
+.blog-desc  span{
+    margin : 10px 0;
+}
+.blog-desc h4{
+    margin: 15px 0;
+}

@@ -25,7 +25,7 @@ const UserRow = ({user, refetch, index, setDeleteUser}) => {
     }
 
     const makeDoctor = () => {
-      fetch(`http://localhost:5000/admin/doctor/${email}`, {
+      fetch(`https://y-silk-zeta.vercel.app/admin/doctor/${email}`, {
         method: 'PUT', 
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`

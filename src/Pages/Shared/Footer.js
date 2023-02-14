@@ -9,7 +9,7 @@ const Footer = () => {
       className="text-dark-content"
     >
       <div className="footer p-10">
-      <div>
+      <div>  
         <span className="footer-title">Services</span>
         <a className="link link-hover">Branding</a>
         <a className="link link-hover">Design</a>

@@ -47,10 +47,10 @@ const MyReview = () => {
 
 
   return (
-    <div className='border-2 border-teal-400 rounded-lg w-2/4 p-4 my-4'>
+    <div className='border-2 border-teal-400 bg-white rounded-lg w-2/4 p-4 my-4'>
       <h2 className='my-4 font-bold text-xl px-4'>My Review </h2>
       <form onSubmit={handleReviewSubmit} className="grid grid-cols-1 gap-2 p-4 w-full  "> 
-          <textarea onChange={(e) => setDescription(e.target.value)} className="textarea lg:w-full max-w-xs mb-2 h-28" placeholder="Your Message"></textarea> 
+          <textarea onChange={(e) => setDescription(e.target.value)} className="textarea lg:w-full max-w-xs mb-2 h-36 input input-bordered w-full" placeholder="Your Message"></textarea> 
           <input
               type="text" 
               name="name"

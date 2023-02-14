@@ -35,7 +35,10 @@ const MyAppointment = () => {
 
   return (
     <div>
-      <h2>My Appointment {appointments.length}</h2>
+       <h2 className="text-3xl text-black-500 font-bold text-center">
+        My Appointment {" "}
+      </h2>
+      <h2 className="text-md font-bold text-right mb-3">Total Appointments: {appointments.length}</h2> 
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>

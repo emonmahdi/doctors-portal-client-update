@@ -26,17 +26,19 @@ const Dashboard = () => {
   return (
     <div className="drawer drawer-mobile">
       <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content p-4 bg-green-100">
-        <h2 className="text-3xl text-purple-500 font-bold">Welcome to your Dashboard</h2>
+      <div className="drawer-content p-4 bg-green-100"> 
         <Outlet />
         {/* <!-- Page content here --> */}
         
       </div> 
-      <div className="drawer-side" style={sideBarStyle}>
+      <div className={"drawer-side"} style={sideBarStyle}>
         <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
         <ul className="menu p-4 w-auto text-white">
           {/* <!-- Sidebar content here --> */}
-         { !admin || !doctor &&  <>
+         { !admin ?  <>
+          <li>
+            <Link to='/dashboard'>My Profile</Link>
+          </li>
           <li>
             <Link to='/dashboard/myappoinment'>My Appointment</Link>
           </li>
@@ -46,14 +48,27 @@ const Dashboard = () => {
           <li>
             <Link to='/dashboard/history'>My History</Link>
           </li>
-         </>}
-          {admin && <li>
+         </>
+         : 
+         <li>
+            <>
+            <Link to='/dashboard'>Profile</Link>
+            <Link to='/dashboard/users'>Users</Link>
+            <Link to='/dashboard/addDoctor'>Add a Doctor</Link>
+            <Link to='/dashboard/blog'>Add Blog</Link>
+            <Link to='/dashboard/faq'>Add FAQ</Link>
+            <Link to='/dashboard/manageDoctor'>ManageDoctor</Link>
+            <Link to='/dashboard/allbooking'>All Bookings</Link>
+            </>
+          </li>}
+         {/*  {admin && <li>
             <>
             <Link to='/dashboard/users'>Users</Link>
             <Link to='/dashboard/addDoctor'>Add a Doctor</Link>
             <Link to='/dashboard/manageDoctor'>ManageDoctor</Link>
             </>
-          </li>}
+          </li>} */}
+          
           {doctor && <li>
             <>
             <Link to='/dashboard/patients'>Patient List</Link> 

@@ -20,6 +20,12 @@ import AddDoctor from './Pages/Dashboard/AddDoctor';
 import ManageDoctors from './Pages/Dashboard/ManageDoctors';
 import Payment from './Pages/Dashboard/Payment';
 import PatientsList from './Pages/Dashboard/PatientsList';
+import TotalBooking from './Pages/Dashboard/TotalBooking';
+import Profile from './Pages/Dashboard/Profile';
+import Blogs from './Pages/Blog/Blogs';
+import AddBlog from './Pages/Dashboard/AddBlog';
+import SingleBlog from './Pages/Blog/SingleBlog';
+import AddFAQ from './Pages/Dashboard/AddFAQ';
 
 function App() {
   return (
@@ -28,6 +34,8 @@ function App() {
        <Routes>
           <Route path='/' element={<Home />} />
           <Route path='about' element={<About />} />
+          <Route path='blog' element={<Blogs />} />
+          <Route path='blog/:Id' element={<SingleBlog />} />
           <Route path='login' element={<Login />} />
           <Route path='signup' element={<SignUp />} />
           <Route path='appointment' element={
@@ -35,15 +43,19 @@ function App() {
               <Appointment />
             </RequireAuth>
           } />
-          <Route path='dashboard' element={ <RequireAuth>  <Dashboard /> </RequireAuth> }>
+          <Route path='/dashboard' element={ <RequireAuth>  <Dashboard /> </RequireAuth> }>
+            <Route index element={<RequireAuth><Profile /></RequireAuth>} /> 
             <Route path='myappoinment' element={<MyAppointment />}> </Route>
             <Route path='review' element={<MyReview />}> </Route>
             <Route path='history' element={<MyHistory />}> </Route>
             <Route path='payment/:id' element={<Payment />}> </Route>
             <Route path='users' element={<RequireAdmin><Users /></RequireAdmin>}> </Route>
-            <Route path='addDoctor' element={<RequireAdmin><AddDoctor /></RequireAdmin>}> </Route>
-            <Route path='manageDoctor' element={<RequireAdmin><ManageDoctors /></RequireAdmin>}> </Route>
+            <Route path='addDoctor' element={<RequireAdmin><AddDoctor /></RequireAdmin>}> </Route> 
+            <Route path='manageDoctor' element={<RequireAdmin><ManageDoctors /></RequireAdmin>}> </Route> 
             <Route path='patients' element={<PatientsList />}> </Route>
+            <Route path='allbooking' element={<RequireAdmin><TotalBooking /></RequireAdmin>}> </Route> 
+            <Route path='blog' element={<RequireAdmin><AddBlog /></RequireAdmin>}> </Route> 
+            <Route path='faq' element={<RequireAdmin><AddFAQ /></RequireAdmin>}> </Route> 
           </Route>
           {/* <Route path='pappointment' element={
             <RequireAuth>
