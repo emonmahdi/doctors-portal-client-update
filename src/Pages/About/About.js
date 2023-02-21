@@ -1,5 +1,6 @@
 import React from 'react'
 import Footer from '../Shared/Footer'
+import Navbar from '../Shared/Navbar/Navbar'
 import AboutContent from './AboutContent'
 import AboutCounter from './AboutCounter'
 import OurDoctor from './OurDoctor'
@@ -14,6 +15,7 @@ const styleAbout = {
 const About = () => {
   return (
     <>
+    <Navbar />
     <div style={styleAbout}>
       <h3 className='text-4xl font-bold'>About Page</h3>
     </div>

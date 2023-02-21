@@ -6,7 +6,7 @@ const useToken = user =>{
         const email = user?.user?.email;
         const currentUser = {email: email};
         if(email){
-            fetch(`https://y-silk-zeta.vercel.app/user/${email}`, {
+            fetch(`http://localhost:5000/user/${email}`, {
                 method:'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -40,7 +40,7 @@ const useToken = (user) => {
       email: email,
     };
     if (email) {
-      fetch(`https://y-silk-zeta.vercel.app/user/${email}`, {
+      fetch(`http://localhost:5000/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

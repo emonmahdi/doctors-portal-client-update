@@ -5,7 +5,7 @@ const TotalBooking = () => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    const url = `https://y-silk-zeta.vercel.app/all/bookings`;
+    const url = `http://localhost:5000/all/bookings`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

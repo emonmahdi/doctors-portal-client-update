@@ -25,7 +25,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       phone: e.target.phone.value
     }
 
-    fetch('https://y-silk-zeta.vercel.app/booking',{
+    fetch('http://localhost:5000/booking',{
       method:"POST",
       headers:{
         'content-type': "application/json"

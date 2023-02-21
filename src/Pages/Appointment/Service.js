@@ -4,8 +4,8 @@ const Service = ({ service, setTreatment }) => {
   const { name, slots, price } = service;
   console.log(slots)
   return (
-    <div className="card lg:max-w-lg bg-base-100 shadow-xl">
-      <div className="card-body text-center">
+    <div className="card lg:max-w-lg bg-slate-800 border-2 border-teal-300 shadow-xl">
+      <div className="card-body text-center text-white">
         <h2 className="text-2xl font-bold text-secondary">{name}</h2>
         <p>
           {slots.length > 0 ? (

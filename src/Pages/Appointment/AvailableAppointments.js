@@ -11,7 +11,7 @@ const AvailableAppointments = ({date}) => {
     const [treatment, setTreatment] = useState(null);
 
     const formattedDate = format(date, "PP")
-    const {data: services, isLoading, refetch} = useQuery(['available', formattedDate], () => fetch(`https://y-silk-zeta.vercel.app/available?data=${formattedDate}`)
+    const {data: services, isLoading, refetch} = useQuery(['available', formattedDate], () => fetch(`http://localhost:5000/available?data=${formattedDate}`)
     .then(res => res.json()) )
 
     if(isLoading){

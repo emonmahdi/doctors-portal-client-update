@@ -15,7 +15,7 @@ const BlogCard = ({blog}) => {
         </p>
         <p><span>Date: {date}</span></p>
         <Link to={`${_id}`}> 
-          <h4 className="text-2xl text-primary hover:text-black">{title}</h4>
+          <h4 className="text-2xl hover:text-primary text-black font-bold">{title}</h4>
         </Link>
         <Link to={`${_id}`}>
             <button className="btn btn-text text-success">Read More</button>

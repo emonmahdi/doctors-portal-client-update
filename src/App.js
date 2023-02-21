@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+
 import About from './Pages/About/About';
 import Appointment from './Pages/Appointment/Appointment';
 import Home from './Pages/Home/Home';
@@ -26,13 +27,25 @@ import Blogs from './Pages/Blog/Blogs';
 import AddBlog from './Pages/Dashboard/AddBlog';
 import SingleBlog from './Pages/Blog/SingleBlog';
 import AddFAQ from './Pages/Dashboard/AddFAQ';
+import DashboardNavBar from './Pages/Dashboard/DashboardNavBar';
+
+
+
+// Import Swiper styles
+import 'swiper/css';
+import FAQSection from './Pages/Home/FAQSection';
+import PatientAskForm from './Pages/Home/PatientAskForm';
+import DashboardProfile from './Pages/Dashboard/DashboardProfile';
 
 function App() {
   return (
     <div className='lg:max-w-9xl mx-auto'> 
-       <Navbar />
+       {/* <Navbar /> */}
        <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='faqs' element={<FAQSection />} />
+          <Route path='ask' element={<RequireAuth> <PatientAskForm /> </RequireAuth>} />
+          <Route path='menuDashboard' element={<DashboardNavBar />} />
           <Route path='about' element={<About />} />
           <Route path='blog' element={<Blogs />} />
           <Route path='blog/:Id' element={<SingleBlog />} />
@@ -44,7 +57,8 @@ function App() {
             </RequireAuth>
           } />
           <Route path='/dashboard' element={ <RequireAuth>  <Dashboard /> </RequireAuth> }>
-            <Route index element={<RequireAuth><Profile /></RequireAuth>} /> 
+            <Route index element={<RequireAuth><DashboardProfile /></RequireAuth>} /> 
+            <Route path='profile' element={<RequireAuth><Profile /></RequireAuth>} /> 
             <Route path='myappoinment' element={<MyAppointment />}> </Route>
             <Route path='review' element={<MyReview />}> </Route>
             <Route path='history' element={<MyHistory />}> </Route>

@@ -12,7 +12,7 @@ const stripePromise = loadStripe(
 
 const Payment = () => {
   const { id } = useParams();
-  const url = `https://y-silk-zeta.vercel.app/booking/${id}`;
+  const url = `http://localhost:5000/booking/${id}`;
 
   const { data: appointment, isLoading } = useQuery(["booking", id], () =>
     fetch(url, {
@@ -27,14 +27,13 @@ const Payment = () => {
     return <Loading></Loading>;
   } 
   return (
-    <div>
-      <h2 className="text-2xl text-purple-500 mb-4 text-center">Please pay for {id}</h2>
+    <div> 
       <div className="card w-96 bg-base-100 mx-auto shadow-xl mb-5">
         <div className="card-body">
           <p className="text-success font-bold">
             Hello! {appointment?.patientName}
           </p>
-          <h2 className="card-title">Pay for {appointment?.treatment}</h2>
+          <h2 className="card-title">Pay for <span className="text-primary">{appointment?.treatment}</span> </h2>
           <p>
             Your Appointment:{" "}
             <span className="text-orange-400">{appointment?.date}</span> at{" "}

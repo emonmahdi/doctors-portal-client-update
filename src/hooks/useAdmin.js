@@ -6,7 +6,7 @@ const useAdmin = user => {
     const [adminLoading, setAdminLoading] = useState(true)
     useEffect(() => {
         const email = user?.email;
-        fetch(`https://y-silk-zeta.vercel.app/admin/${email}`, {
+        fetch(`http://localhost:5000/admin/${email}`, {
             method: "GET",
             headers: {
                 'content-type': 'application/json',

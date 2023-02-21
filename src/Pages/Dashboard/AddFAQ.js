@@ -13,7 +13,7 @@ const AddFAQ = () => {
             title: title,
             description: desc
         }
-        fetch('https://y-silk-zeta.vercel.app/faq', {
+        fetch('http://localhost:5000/faq', {
             method: "POST",
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,

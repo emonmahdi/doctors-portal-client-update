@@ -5,7 +5,7 @@ const UserRow = ({user, refetch, index, setDeleteUser}) => {
     const {email, role} = user;
 
     const makeAdmin = () => {
-        fetch(`https://y-silk-zeta.vercel.app/user/admin/${email}`, {
+        fetch(`http://localhost:5000/user/admin/${email}`, {
             method: "PUT",
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -25,7 +25,7 @@ const UserRow = ({user, refetch, index, setDeleteUser}) => {
     }
 
     const makeDoctor = () => {
-      fetch(`https://y-silk-zeta.vercel.app/admin/doctor/${email}`, {
+      fetch(`http://localhost:5000/admin/doctor/${email}`, {
         method: 'PUT', 
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -45,9 +45,9 @@ const UserRow = ({user, refetch, index, setDeleteUser}) => {
     <tr>
       <th>{index + 1}</th>
       <td>{email}</td>
-      <td>{role !== 'admin'? <>
+      <td>{role !== 'admin' ? <>
       <button onClick={makeAdmin} className="btn btn-xs mx-2">Make Admin</button>
-      <span> { role !== 'doctor' ? <button onClick={makeDoctor} className="btn btn-xs">Make Doctor</button> : <span className="font-bold text-primary">Doctor</span> } </span>
+      {/* <span> { role !== 'doctor' ? <button onClick={makeDoctor} className="btn btn-xs">Make Doctor</button> : <span className="font-bold text-primary">Doctor</span> } </span> */}
       </> 
       : <span className="font-bold text-primary">Admin</span>}</td>
       <td>

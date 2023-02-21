@@ -4,6 +4,7 @@ import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css'; 
 import chair from '../../assets/images/chair.png'
 
+const dentalChair = 'https://i.ibb.co/ZMxr5v5/a7-png-800x400-crop-subsampling-2.png'
 
 const AppointmentBanner = ({date, setDate}) => {
     
@@ -11,7 +12,7 @@ const AppointmentBanner = ({date, setDate}) => {
     <div className="hero min-h-screen ">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
-          src={chair}
+          src={dentalChair}
           className="lg:max-w-lg rounded-lg shadow-2xl"
           alt="Chair image dental"
         />

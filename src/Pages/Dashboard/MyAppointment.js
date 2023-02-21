@@ -10,9 +10,9 @@ const MyAppointment = () => {
   const navigate = useNavigate();
   const [signOut] = useSignOut(auth);
 
-  useEffect(() => {
+  useEffect(() => { 
     if (user) {
-      fetch(`https://y-silk-zeta.vercel.app/booking?patient=${user.email}`, {
+      fetch(`http://localhost:5000/booking?patient=${user.email}`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,

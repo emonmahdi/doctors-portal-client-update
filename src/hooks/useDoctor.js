@@ -7,7 +7,7 @@ const useDoctor = user => {
     useEffect(() => {
         const email = user?.email;
         if(email){
-            fetch(`https://y-silk-zeta.vercel.app/doctor/${email}`, {
+            fetch(`http://localhost:5000/doctor/${email}`, {
             method: "GET",
             headers: {
                 'content-type': 'application/json',

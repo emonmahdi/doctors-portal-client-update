@@ -8,7 +8,7 @@ import UserRow from "./UserRow";
 const Users = () => {
   const [deleteUser, setDeleteUser] = useState('')
   const { data: users, isLoading, refetch } = useQuery("users", () =>
-    fetch("https://y-silk-zeta.vercel.app/user", {
+    fetch("http://localhost:5000/user", {
         method: "GET",
         headers:{
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

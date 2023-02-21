@@ -21,7 +21,7 @@ const AddBlog = () => {
   } = useForm();
 
   const { data: services, isLoading } = useQuery("service", () =>
-    fetch("https://y-silk-zeta.vercel.app/service").then((res) => res.json())
+    fetch("http://localhost:5000/service").then((res) => res.json())
   );
 
   if (isLoading) {
@@ -57,7 +57,7 @@ const AddBlog = () => {
             description: data.description,
           };
           // send to your database
-          fetch("https://y-silk-zeta.vercel.app/blog", {
+          fetch("http://localhost:5000/blog", {
             method: "POST",
             headers: {
               "content-type": "application/json",

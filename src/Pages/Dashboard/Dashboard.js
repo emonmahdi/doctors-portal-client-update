@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, NavLink } from "react-router-dom";
+import  * as FaIcon from 'react-icons/fa'; 
+import { RiMapPinAddFill } from "react-icons/ri"; 
+import * as MdIcon from "react-icons/md";
+
 import auth from "../../firebase.init";
 import useAdmin from "../../hooks/useAdmin";
 import useDoctor from "../../hooks/useDoctor";
+import DashboardNavBar from "./DashboardNavBar";
 
 
 const sideBarStyle = {
-  background: '#3A4255',
+  background: '#1A3758',
   color:'#fff',
-  fontSize: '14px',
-  width:'200px',
+  fontSize: '16px',
+  width:'220px',
   position: 'relative',
   top:'0px',
-  left:'0px'
+  left:'0px',
+  borderRadius: '10px'
 }
 
 const Dashboard = () => {
@@ -21,12 +27,49 @@ const Dashboard = () => {
   const [admin] = useAdmin(user);
   const [doctor] = useDoctor(user);
 
-  console.log(doctor);
+  const [classState, setClassState] = useState(false)
+   
+
+  const handleToggleClass = (e) => {
+    setClassState(classState => !classState)
+  }
+
+  let toggleClassCheck = classState ? 'menuActiveClass' : null;
+
+
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  // Function to handle item selection
+  /* function handleItemClick(item) {
+    setSelectedItem(item);
+  }
+
+  const userItems = [
+    {
+      id: 1,
+      title: 'My Profile',
+      route: '/dashboard'
+    },
+    {
+      id: 2,
+      title: 'My Appointment',
+      route: '/dashboard/myappoinment'
+    },
+    {
+      id: 3,
+      title: 'My Review',
+      route: '/dashboard/review'
+    },
+  ] */
+
 
   return (
+    <>
+    <DashboardNavBar />
     <div className="drawer drawer-mobile">
       <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content p-4 bg-green-100"> 
+      <div className="drawer-content p-4 bg-gray-300"> 
+      
         <Outlet />
         {/* <!-- Page content here --> */}
         
@@ -35,39 +78,33 @@ const Dashboard = () => {
         <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
         <ul className="menu p-4 w-auto text-white">
           {/* <!-- Sidebar content here --> */}
-         { !admin ?  <>
+         { !admin ?  <> 
+
           <li>
-            <Link to='/dashboard'>My Profile</Link>
+            <NavLink to='/dashboard/profile' activeClassName="menuActiveClass"> <span> <FaIcon.FaUserCircle />  </span>  My Profile</NavLink>
           </li>
           <li>
-            <Link to='/dashboard/myappoinment'>My Appointment</Link>
+            <NavLink to='/dashboard/myappoinment' activeClassName="menuActiveClass"> <span><MdIcon.MdBorderColor /></span> My Appointment</NavLink>
           </li>
           <li>
-            <Link to='/dashboard/review'>My Review</Link>
+            <NavLink to='/dashboard/review' activeClassName="menuActiveClass"><span><FaIcon.FaStar /></span> My Review</NavLink>
           </li>
           <li>
-            <Link to='/dashboard/history'>My History</Link>
+            <NavLink to='/dashboard/history' activeClassName="menuActiveClass"><span><MdIcon.MdHistory /></span> My History</NavLink>
           </li>
          </>
          : 
          <li>
             <>
-            <Link to='/dashboard'>Profile</Link>
-            <Link to='/dashboard/users'>Users</Link>
-            <Link to='/dashboard/addDoctor'>Add a Doctor</Link>
-            <Link to='/dashboard/blog'>Add Blog</Link>
-            <Link to='/dashboard/faq'>Add FAQ</Link>
-            <Link to='/dashboard/manageDoctor'>ManageDoctor</Link>
-            <Link to='/dashboard/allbooking'>All Bookings</Link>
+            <NavLink to='/dashboard/profile' activeClassName="menuActiveClass"> <span> <FaIcon.FaUserCircle />  </span> Profile</NavLink>
+            <NavLink to='/dashboard/users' activeClassName="menuActiveClass"> <span><FaIcon.FaUsers /></span> Users</NavLink>
+            <NavLink to='/dashboard/addDoctor' activeClassName="menuActiveClass"><span><RiMapPinAddFill /></span> Add a Doctor</NavLink>
+            <NavLink to='/dashboard/blog' activeClassName="menuActiveClass"><span><MdIcon.MdPostAdd /></span> Add Blog</NavLink>
+            <NavLink to='/dashboard/faq' activeClassName="menuActiveClass"><span><MdIcon.MdOutlinePlaylistAdd /></span> Add FAQ</NavLink>
+            <NavLink to='/dashboard/manageDoctor' activeClassName="menuActiveClass"><span><FaIcon.FaPollH /></span> ManageDoctor</NavLink>
+            <NavLink to='/dashboard/allbooking' activeClassName="menuActiveClass"><span><MdIcon.MdCalendarViewWeek/></span> All Bookings</NavLink>
             </>
-          </li>}
-         {/*  {admin && <li>
-            <>
-            <Link to='/dashboard/users'>Users</Link>
-            <Link to='/dashboard/addDoctor'>Add a Doctor</Link>
-            <Link to='/dashboard/manageDoctor'>ManageDoctor</Link>
-            </>
-          </li>} */}
+          </li>} 
           
           {doctor && <li>
             <>
@@ -77,6 +114,7 @@ const Dashboard = () => {
         </ul>
       </div>
     </div>
+    </>
   );
 };
 

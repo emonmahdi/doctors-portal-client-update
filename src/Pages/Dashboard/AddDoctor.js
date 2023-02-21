@@ -13,7 +13,7 @@ const AddDoctor = () => {
   } = useForm();
 
   const { data: services, isLoading } = useQuery("service", () =>
-    fetch("https://y-silk-zeta.vercel.app/service").then((res) => res.json())
+    fetch("http://localhost:5000/service").then((res) => res.json())
   );
 
   if (isLoading) {
@@ -44,7 +44,7 @@ const AddDoctor = () => {
             description: data.description,
           };
           // send to your database
-          fetch("https://y-silk-zeta.vercel.app/doctor", {
+          fetch("http://localhost:5000/doctor", {
             method: "POST",
             headers: {
               "content-type": "application/json",

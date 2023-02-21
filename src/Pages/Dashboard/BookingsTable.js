@@ -1,8 +1,22 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
-const BookingsTable = ({ booking, index }) => {
-  console.log(booking);
-  const { patientName, date, slot, treatment, phone } = booking;
+const BookingsTable = ({ booking, index }) => { 
+  const { patientName, date, slot, treatment, phone, _id } = booking;
+  const [update, setUpdate] = useState(''); 
+
+  const handlePending = (id, text) => {
+    axios.put(`http://localhost:5000/booking/status/${id}`)
+    .then(res => {
+      // if(res.data.acknowledged){
+      //   toast.success('Pending booking!')
+      // }
+      console.log(res.data)
+      setUpdate(res.data)
+    })
+  }
+
   return (
     <tr>
       <th>{index + 1}</th>
@@ -17,8 +31,11 @@ const BookingsTable = ({ booking, index }) => {
       <td>
         <select className="select select-bordered w-full max-w-xs">
           <option>
-            Pending
+          Pending
           </option>
+          {/* <option onClick={handlePending(_id, "Approved")}>
+            Pending
+          </option> */}
           <option>Complete</option>
           <option>Cancel</option>
         </select>

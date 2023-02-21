@@ -5,7 +5,7 @@ const DeleteConfirmModal = ({deletingDoctor, refetch, setDeletingDoctor}) => {
   const {name, email} = deletingDoctor;
 
   const handleDelete = () => {
-    fetch(`https://y-silk-zeta.vercel.app/doctor/${email}`, {
+    fetch(`http://localhost:5000/doctor/${email}`, {
         method: "DELETE",
         headers:{
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -10,24 +10,24 @@ const Services = () => {
     {
       _id: 1,
       name:"Fluoride Treatment",
-      description: "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the",
+      description: "Fluoride joins the tooth structure when your teeth develop, thus strengthening the teeth' enamel, making them less susceptible to bacteria and cavities.",
       img: fluoride,
     },
     {
       _id: 2,
       name:"Cavity Filling",
-      description: "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the",
+      description: " You may feel a bit of a sting, but that's a reaction from the local anesthetic when it starts to block the nerve signals to stop the pain Fillings are also used to repair ",
       img: cavity,
     },
     {
       _id: 3,
       name:"Teeth Whitening",
-      description: "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the",
+      description: "Teeth Whitening is a quick and painless in-office whitening system that provides dramatic results—teeth that are up to eight shades whiter!",
       img: whitening,
     }
   ]
   return (
-    <div className='my-24 px-8'>
+    <div className='px-8 py-12 bg-gray-300'>
       <div className='text-center'>
         <h3 className='text-primary text-xl font-bold'>Our Services</h3>
         <h2 className='text-4xl'>Services We Provide</h2>

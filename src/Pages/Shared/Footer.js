@@ -11,10 +11,10 @@ const Footer = () => {
       <div className="footer p-10">
       <div>  
         <span className="footer-title">Services</span>
-        <a className="link link-hover">Branding</a>
-        <a className="link link-hover">Design</a>
-        <a className="link link-hover">Marketing</a>
-        <a className="link link-hover">Advertisement</a>
+        <a className="link link-hover">Fluoride Treatment</a>
+        <a className="link link-hover">Cavity Filling</a>
+        <a className="link link-hover">Teeth Whitening</a>
+        <a className="link link-hover">Teeth Cleaning</a>
       </div>
       <div>
         <span className="footer-title">Company</span>
@@ -31,7 +31,7 @@ const Footer = () => {
       </div>
       </div>
       <div className="text-center">
-        <p>Copyright © 2022 - All right reserved by Doctors Portal</p>
+        <p>Copyright © 2022 - All right reserved by Dental Care</p>
       </div>
     </footer>
   );

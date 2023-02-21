@@ -6,7 +6,7 @@ const DeleteUserModal = ({deleteUser, setDeleteUser, refetch}) => {
     
 
     const handleDeleteUser = () => {
-        fetch(`https://y-silk-zeta.vercel.app/user/${email}`, {
+        fetch(`http://localhost:5000/user/${email}`, {
             method: 'DELETE',
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

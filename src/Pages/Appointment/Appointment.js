@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Footer from '../Shared/Footer'
+import Navbar from '../Shared/Navbar/Navbar';
 import AppointmentBanner from './AppointmentBanner'
 import AvailableAppointments from './AvailableAppointments';
 
@@ -8,6 +9,7 @@ const Appointment = () => {
 
   return (
     <div>
+        <Navbar />
         <AppointmentBanner date={date} setDate={setDate} />
         <AvailableAppointments date={date} />
         <Footer />

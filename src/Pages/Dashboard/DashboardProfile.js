@@ -7,7 +7,7 @@ import useDoctor from "../../hooks/useDoctor";
 
 const avatar = "https://i.ibb.co/TYh3jwZ/download.png";
 
-const Profile = () => {
+const DashboardProfile = () => {
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
   const [doctor] = useDoctor(user);
@@ -178,4 +178,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default DashboardProfile; 

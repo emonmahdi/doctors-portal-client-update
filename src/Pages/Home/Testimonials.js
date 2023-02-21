@@ -1,5 +1,9 @@
 import React from 'react'
 import { useQuery } from 'react-query'
+import Slider from "react-slick";
+
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 import quote from '../../assets/icons/quote.svg'
 import people1 from '../../assets/images/people1.png'
@@ -34,7 +38,7 @@ const Testimonials = () => {
     ] */
 
     const { data: reviews, isLoading, refetch } = useQuery("reviews", () =>
-    fetch("https://y-silk-zeta.vercel.app/review", {
+    fetch("http://localhost:5000/review", {
         method: "GET",
         headers:{
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -45,6 +49,42 @@ const Testimonials = () => {
     if(isLoading){
       return <Loading />
     } 
+
+    
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
   return (
     <section className='my-28 px-8'>
@@ -57,15 +97,17 @@ const Testimonials = () => {
             <img src={quote} className="w-24 lg:w-48" alt="" />
         </div>
       </div>
-      <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5'>
+      <div className='grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 gap-5 my-4'>
+      <Slider {...settings}>
         {
            reviews && reviews?.map(review => <Review
             key={review._id}
             review={review}
             >
 
-            </Review>)
+            </Review>) 
         }
+        </Slider>
       </div>
     </section>
   )

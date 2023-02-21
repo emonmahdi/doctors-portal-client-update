@@ -8,7 +8,7 @@ const ManageDoctors = () => {
   const [deletingDoctor, setDeletingDoctor] = useState('');
   
   const { data: doctors, isLoading, refetch } = useQuery("doctors", () =>
-    fetch("https://y-silk-zeta.vercel.app/doctor", {
+    fetch("http://localhost:5000/doctor", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

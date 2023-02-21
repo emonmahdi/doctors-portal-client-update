@@ -3,7 +3,7 @@ import * as FaIcons from 'react-icons/fa';
 
 const DoctorCard = ({doctor}) => { 
     const {name, img, specialty, description} = doctor;
-    console.log(doctor);
+    
   return (
     <div className="card lg:max-w-lg bg-base-100 shadow-xl">
       <figure className="px-10 pt-10">
