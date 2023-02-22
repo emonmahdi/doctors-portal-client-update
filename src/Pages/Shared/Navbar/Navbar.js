@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import useAdmin from "../../../hooks/useAdmin";
 
 const listColor = {
   color: '#fff'
@@ -10,6 +11,8 @@ const listColor = {
 
 const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
+  const [admin] = useAdmin(user);
+
   const [signOut, logOutLoading, logOutError] = useSignOut(auth);
 
   const navigate = useNavigate(); 
@@ -54,9 +57,14 @@ const Navbar = () => {
       <li style={listColor}>
         <NavLink to="/about" activeClassName="menuActiveClass">About</NavLink>
       </li>
-      <li style={listColor}>
+      {
+        admin ? "" : <li style={listColor}>
         <NavLink to="/appointment" activeClassName="menuActiveClass">Appointment {appointments.length ? <span style={{background:'black', padding: '5px', color: '#fff', border: '1px solid #fff',  textAlign: 'center', marginLeft: '-10px', marginTop: '-15px', borderRadius: '30px', fontSize: '9px'}}>{appointments.length }</span>  : "" }  </NavLink>
-      </li>
+      </li>  
+      }
+     {/*  <li style={listColor}>
+        <NavLink to="/appointment" activeClassName="menuActiveClass">Appointment {appointments.length ? <span style={{background:'black', padding: '5px', color: '#fff', border: '1px solid #fff',  textAlign: 'center', marginLeft: '-10px', marginTop: '-15px', borderRadius: '30px', fontSize: '9px'}}>{appointments.length }</span>  : "" }  </NavLink>
+      </li> */}
       <li style={listColor}>
         <NavLink to="/blog" activeClassName="menuActiveClass">Blogs</NavLink>
       </li>

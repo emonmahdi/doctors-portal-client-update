@@ -36,6 +36,7 @@ import 'swiper/css';
 import FAQSection from './Pages/Home/FAQSection';
 import PatientAskForm from './Pages/Home/PatientAskForm';
 import DashboardProfile from './Pages/Dashboard/DashboardProfile';
+import UpdateDoctor from './Pages/Dashboard/UpdateDoctor';
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
             <Route path='allbooking' element={<RequireAdmin><TotalBooking /></RequireAdmin>}> </Route> 
             <Route path='blog' element={<RequireAdmin><AddBlog /></RequireAdmin>}> </Route> 
             <Route path='faq' element={<RequireAdmin><AddFAQ /></RequireAdmin>}> </Route> 
+            <Route path='update/:Id' element={<RequireAdmin><UpdateDoctor /></RequireAdmin>}> </Route> 
           </Route>
           {/* <Route path='pappointment' element={
             <RequireAuth>
